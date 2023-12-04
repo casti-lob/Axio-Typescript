@@ -1,11 +1,11 @@
 import{Users} from './interfaces/users'
 import{Posts} from './interfaces/posts'
-import axios, {AxiosResponse} from 'axios'
+import axios from 'axios'
 
 const url = "http://localhost:3000"
 const ul = document.querySelector("#users")
 const ulPosts = document.querySelector("#posts")
-
+const form = document.querySelector("form")
 
 const getData = async ()=>{
   try {
@@ -25,15 +25,23 @@ const getData = async ()=>{
   }
   
 }
-
+form?.addEventListener( 'submit', (e)=>{
+      e.preventDefault()
+      addUser()
+      
+})
 
 
 const addUser = async ()=>{
+    const name = <HTMLInputElement> document.getElementById("name")
+    const email =<HTMLInputElement> document.getElementById("email")
+    const age = <HTMLInputElement>document.getElementById("age")
+    const isAdmin =<HTMLInputElement> document.getElementById("isAdmin")
     const user: Omit<Users,'id'>={
-      "name": "Nuevo",
-      "email": "nuevo@gmail.com",
-      "age": 27,
-      "isAdmin": true
+      "name": name.value,
+      "email": email.value,
+      "age": parseInt(age.value),
+      "isAdmin": Boolean(isAdmin.value)
     }
   try {
     const response = await axios.post(url+"/users",user)
@@ -44,9 +52,10 @@ const addUser = async ()=>{
   }
 }
 
+
 getData()
 
-//addUser()
+
 
 const getPublication = async ()=>{
   try {

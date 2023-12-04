@@ -7,7 +7,20 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>Creacion Publicación</h1>
+      <form action="">
+        Nombre: <input type="text" id="name">
+        Email: <input type="email" id="email">
+        Edad: <input type="number" id="age">
+        Admin: <select name="" id="isAdmin">
+          <option value="true">Administrador</option>
+          <option value="false">Usuario</option>
+        </select>
+        <button type="submit">Crear</button>
+      </form>
+      
+    </div>
     <ul id="users"></ul>
     <ul id="posts"></ul>
     <script type="module" src="/src/main.ts"></script>
